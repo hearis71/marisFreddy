@@ -31,6 +31,7 @@
         overflow: hidden;
         box-shadow: 0 2px 8px rgba(63, 69, 81, 0.16);
         margin-bottom: 1rem;
+        position: relative;
       }
 
       video {
@@ -38,34 +39,51 @@
         height: auto;
         display: block;
       }
+
+      .unmute-btn {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        background: rgba(0, 0, 0, 0.6);
+        color: #fff;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 20px;
+        font-size: 0.875rem;
+        z-index: 10;
+        cursor: pointer;
+        transition: opacity 0.3s ease;
+      }
+
+      .unmute-btn:hover {
+        background: rgba(0, 0, 0, 0.8);
+      }
     </style>
   </head>
   <body>
     <div class="mobile-wrapper">
-      <h1 class="h5 text-center mb-3">oke Pernikahan Maris & Fredi</h1>
+      <h1 class="h5 text-center mb-3">Undangan Maris & Fredi</h1>
 
       <div class="video-container">
         <video id="myVideo" autoplay muted loop playsinline>
           <source src="assets/maris-fredi.mp4" type="video/mp4" />
           Browser Anda tidak mendukung video.
         </video>
+        <button class="unmute-btn" id="unmuteBtn">Aktifkan Suara 🎵</button>
       </div>
 
       <p class="text-center text-muted small">Terima kasih telah hadir 💙</p>
     </div>
 
-    <!-- Aktifkan suara saat interaksi pertama -->
+    <!-- Aktifkan suara saat tombol ditekan -->
     <script>
       const video = document.getElementById("myVideo");
+      const unmuteBtn = document.getElementById("unmuteBtn");
 
-      const unmuteAudio = () => {
-        video.muted = false; // hilangkan mute
-        document.body.removeEventListener("click", unmuteAudio);
-        document.body.removeEventListener("touchstart", unmuteAudio);
-      };
-
-      document.body.addEventListener("click", unmuteAudio);
-      document.body.addEventListener("touchstart", unmuteAudio);
+      unmuteBtn.addEventListener("click", () => {
+        video.muted = false;
+        unmuteBtn.style.display = "none"; // sembunyikan tombol setelah ditekan
+      });
     </script>
 
     <!-- Bootstrap 5 JS (optional) -->

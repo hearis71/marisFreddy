@@ -58,11 +58,56 @@
       .unmute-btn:hover {
         background: rgba(0, 0, 0, 0.8);
       }
+
+      .wavy span {
+        display: inline-block;
+        font-family: "Times New Roman", Times, serif;
+        font-style: italic;
+        font-size: 1.5rem;
+      }
+
+      .player {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.8rem;
+        margin-bottom: 1rem;
+        color: rgb(255, 255, 255);
+      }
+
+      .progress-bar {
+        flex: 1;
+        appearance: none;
+        height: 6px;
+        background: rgba(2, 86, 165, 0.3);
+        border-radius: 10px;
+        cursor: pointer;
+        outline: none;
+      }
+
+      .progress-bar::-webkit-slider-thumb {
+        appearance: none;
+        width: 14px;
+        height: 14px;
+        background: #0d9646;
+        border-radius: 50%;
+        border: none;
+        margin-top: -4px;
+        box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+      }
+
+      .progress-bar::-moz-range-thumb {
+        width: 14px;
+        height: 14px;
+        background: #2f78ff;
+        border-radius: 50%;
+        border: none;
+      }
     </style>
   </head>
   <body>
     <div class="mobile-wrapper">
-      <h1 class="h5 text-center mb-3"><i>Save the Date ! </i></h1>
+      <h1 class="h5 text-center mb-3 wavy" id="title">Save the Date !</h1>
 
       <div class="video-container">
         <video id="myVideo" autoplay muted loop playsinline>
@@ -72,40 +117,91 @@
         <button class="unmute-btn" id="unmuteBtn">Aktifkan Suara 🎵</button>
       </div>
 
-      <p class="text-center text-muted small">Thanks 💙</p>
+      <!-- Player bar -->
+      <div class="player">
+        <span id="currentTime">00:00</span>
+        <input type="range" id="progressBar" class="progress-bar" value="0" />
+        <span id="duration">00:00</span>
+      </div>
+
+      <p id="thanksText" class="text-center text-muted small">💙 Thanks 💙</p>
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+      <script>
+        gsap.to("#thanksText", {
+          scale: 1.45,
+          duration: 1,
+          repeat: -1,
+          yoyo: true,
+          ease: "power1.inOut",
+        });
+      </script>
     </div>
 
     <!-- Aktifkan suara saat tombol ditekan -->
     <script>
       const video = document.getElementById("myVideo");
       const unmuteBtn = document.getElementById("unmuteBtn");
+      const progressBar = document.getElementById("progressBar");
+      const currentTimeEl = document.getElementById("currentTime");
+      const durationEl = document.getElementById("duration");
 
+      // Format waktu
+      function formatTime(seconds) {
+        const m = Math.floor(seconds / 60);
+        const s = Math.floor(seconds % 60);
+        return `${m.toString().padStart(2, "0")}:${s
+          .toString()
+          .padStart(2, "0")}`;
+      }
+
+      // Saat metadata tersedia
+      video.addEventListener("loadedmetadata", () => {
+        progressBar.max = video.duration;
+        durationEl.textContent = formatTime(video.duration);
+      });
+
+      // Update progress saat video berjalan
+      video.addEventListener("timeupdate", () => {
+        progressBar.value = video.currentTime;
+        currentTimeEl.textContent = formatTime(video.currentTime);
+      });
+
+      // Seek ketika digeser
+      progressBar.addEventListener("input", () => {
+        video.currentTime = progressBar.value;
+      });
+
+      // Tombol aktifkan suara
       unmuteBtn.addEventListener("click", () => {
         video.muted = false;
-        unmuteBtn.style.display = "none"; // sembunyikan tombol setelah ditekan
+        unmuteBtn.style.display = "none";
       });
     </script>
 
-    <!-- GSAP CDN -->
+    <!-- GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script>
-      gsap.from("h1", {
-        opacity: 0,
-        y: -30,
-        duration: 1,
-        ease: "bounce.out",
+      const title = document.getElementById("title");
+      const text = title.textContent;
+      title.textContent = "";
+      [...text].forEach((char) => {
+        const span = document.createElement("span");
+        span.textContent = char;
+        title.appendChild(span);
       });
 
-      gsap.from("p", {
-        opacity: 0,
-        y: 30,
-        duration: 1,
-        delay: 1,
-        ease: "power2.out",
+      gsap.to(".wavy span", {
+        y: -10,
+        repeat: -1,
+        yoyo: true,
+        stagger: 0.1,
+        ease: "sine.inOut",
+        duration: 0.6,
       });
     </script>
 
-    <!-- Bootstrap 5 JS (optional) -->
+    <!-- Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

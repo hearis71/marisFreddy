@@ -62,7 +62,7 @@
   </head>
   <body>
     <div class="mobile-wrapper">
-      <h1 class="h5 text-center mb-3">Undangan Maris & Fredi</h1>
+      <h1 class="h5 text-center mb-3"><i>Save the Date ! </i></h1>
 
       <div class="video-container">
         <video id="myVideo" autoplay muted loop playsinline>
@@ -72,7 +72,7 @@
         <button class="unmute-btn" id="unmuteBtn">Aktifkan Suara 🎵</button>
       </div>
 
-      <p class="text-center text-muted small">Terima kasih telah hadir 💙</p>
+      <p class="text-center text-muted small">Thanks 💙</p>
     </div>
 
     <!-- Aktifkan suara saat tombol ditekan -->
@@ -83,6 +83,25 @@
       unmuteBtn.addEventListener("click", () => {
         video.muted = false;
         unmuteBtn.style.display = "none"; // sembunyikan tombol setelah ditekan
+      });
+    </script>
+
+    <!-- GSAP CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script>
+      gsap.from("h1", {
+        opacity: 0,
+        y: -30,
+        duration: 1,
+        ease: "bounce.out",
+      });
+
+      gsap.from("p", {
+        opacity: 0,
+        y: 30,
+        duration: 1,
+        delay: 1,
+        ease: "power2.out",
       });
     </script>
 

@@ -136,6 +136,62 @@
           ease: "power1.inOut",
         });
       </script>
+
+      <!-- Amplop Digital -->
+      <div class="text-center mt-4">
+        <h2
+          class="h5"
+          style="font-family: 'Times New Roman', serif; letter-spacing: 2px"
+        >
+          AMPLOP DIGITAL
+        </h2>
+        <p class="small text-muted mx-3">
+          Doa restu anda merupakan karunia yang sangat berarti bagi kami. Namun
+          jika memberi adalah ungkapan tanda kasih, anda dapat memberi kado
+          secara cashless.
+        </p>
+        <button class="btn btn-outline-danger btn-sm mb-3">
+          🎁 Kirim Hadiah
+        </button>
+
+        <!-- BRI -->
+        <div
+          class="card text-start border-0"
+          style="
+            background: linear-gradient(to right, #81b7ff, #deecff);
+            border-radius: 12px;
+          "
+        >
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <strong style="font-size: 1.2rem">106701009572508</strong>
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/6/68/BANK_BRI_logo.svg"
+                alt="BRI"
+                height="24"
+              />
+            </div>
+            <h2 class="mb-3 small">Freddy Agustinus B.</h2>
+            <div class="d-flex justify-content-end">
+              <button
+                class="btn btn-sm btn-primary rounded-pill border"
+                onclick="copyText('106701009572508', this)"
+              >
+                Salin Rekening
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        function copyText(text, btn) {
+          navigator.clipboard.writeText(text).then(() => {
+            btn.textContent = "Berhasil disalin";
+            setTimeout(() => (btn.textContent = "Salin Rekening"), 2000);
+          });
+        }
+      </script>
     </div>
 
     <!-- Aktifkan suara saat tombol ditekan -->

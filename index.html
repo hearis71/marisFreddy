@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=390, user-scalable=no" />
+    <title>Undangan Maris & Fredi</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        background-color: #f7f7f7;
+        font-family: "Segoe UI", sans-serif;
+      }
+
+      .mobile-wrapper {
+        max-width: 390px;
+        margin: 0 auto;
+        padding: 1rem;
+        background: #fff;
+        min-height: 100vh;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .video-container {
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(63, 69, 81, 0.16);
+        margin-bottom: 1rem;
+        position: relative;
+      }
+
+      video {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .unmute-btn {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        background: rgba(0, 0, 0, 0.6);
+        color: #fff;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 20px;
+        font-size: 0.875rem;
+        z-index: 10;
+        cursor: pointer;
+        transition: opacity 0.3s ease;
+      }
+
+      .unmute-btn:hover {
+        background: rgba(0, 0, 0, 0.8);
+      }
+
+      .wavy span {
+        display: inline-block;
+        font-family: "Times New Roman", Times, serif;
+        font-style: italic;
+        font-size: 1.5rem;
+      }
+
+      .player {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.8rem;
+        margin-bottom: 1rem;
+        color: rgb(255, 255, 255);
+      }
+
+      .progress-bar {
+        flex: 1;
+        appearance: none;
+        height: 6px;
+        background: rgba(2, 86, 165, 0.3);
+        border-radius: 10px;
+        cursor: pointer;
+        outline: none;
+      }
+
+      .progress-bar::-webkit-slider-thumb {
+        appearance: none;
+        width: 14px;
+        height: 14px;
+        background: #2f78ff;
+        border-radius: 50%;
+        border: none;
+        margin-top: -4px;
+        box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+      }
+
+      .progress-bar::-moz-range-thumb {
+        width: 14px;
+        height: 14px;
+        background: #2f78ff;
+        border-radius: 50%;
+        border: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="mobile-wrapper">
+      <h1 class="h5 text-center mb-3 wavy" id="title">Save the Date !</h1>
+
+      <div class="video-container">
+        <video id="myVideo" autoplay muted loop playsinline>
+          <source src="assets/maris-fredi.mp4" type="video/mp4" />
+          Browser Anda tidak mendukung video.
+        </video>
+        <button class="unmute-btn" id="unmuteBtn">Aktifkan Suara 🎵</button>
+      </div>
+
+      <!-- Player bar -->
+      <div class="player">
+        <span id="currentTime">00:00</span>
+        <input type="range" id="progressBar" class="progress-bar" value="0" />
+        <span id="duration">00:00</span>
+      </div>
+
+      <p class="text-center text-muted small">💙 Thanks 💙</p>
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+      <script>
+        gsap.to("#thanksText", {
+          scale: 1.45,
+          duration: 1,
+          repeat: -1,
+          yoyo: true,
+          ease: "power1.inOut",
+        });
+      </script>
+
+      <!-- Amplop Digital -->
+      <div class="text-center mt-4">
+        <h2
+          class="h5"
+          style="font-family: 'Times New Roman', serif; letter-spacing: 2px"
+        >
+          AMPLOP DIGITAL
+        </h2>
+        <p class="small text-muted mx-3">
+          Doa restu anda merupakan karunia yang sangat berarti bagi kami. Namun
+          jika memberi adalah ungkapan tanda kasih, anda dapat memberi kado
+          secara cashless.
+        </p>
+        <button class="btn btn-outline-danger btn-sm mb-3">
+          🎁 Kirim Hadiah
+        </button>
+
+        <!-- BRI -->
+        <div
+          class="card text-start border-0"
+          style="
+            background: linear-gradient(to right, #81b7ff, #deecff);
+            border-radius: 12px;
+          "
+        >
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <strong style="font-size: 1.2rem">106701009572508</strong>
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/6/68/BANK_BRI_logo.svg"
+                alt="BRI"
+                height="24"
+              />
+            </div>
+            <h2 class="mb-3 small">Freddy Agustinus B.</h2>
+            <div class="d-flex justify-content-end">
+              <button
+                class="btn btn-sm btn-primary rounded-pill border"
+                onclick="copyText('106701009572508', this)"
+              >
+                Salin Rekening
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Amplop Digital Section -->
+      <div class="amplop-digital">
+        <!-- Your existing digital envelope content here -->
+      </div>
+
+      <!-- Kirim Ucapan Section -->
+      <div class="card mt-4 border-0 shadow-sm" style="border-radius: 12px">
+        <div class="text-center mt-4">
+          <h2
+            class="h5"
+            style="font-family: 'Times New Roman', serif; letter-spacing: 2px"
+          >
+            KIRIM UCAPAN
+          </h2>
+          <div class="mb-3">
+            <label class="form-label">Kirim Pesan</label>
+
+            <textarea
+              class="form-control"
+              rows="3"
+              placeholder="Tulis pesan Anda..."
+            ></textarea>
+          </div>
+
+          <div class="mb-4">
+            <label class="form-label">Nama</label>
+            <input type="text" class="form-control" placeholder="Nama Anda" />
+          </div>
+
+          <div class="mb-4">
+            <label class="form-label">KEHADIRAN</label>
+            <div class="d-flex" style="gap: 16px">
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="attendance"
+                  id="hadir"
+                />
+                <label class="form-check-label" for="hadir"
+                  >Saya akan hadir</label
+                >
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="attendance"
+                  id="tidakHadir"
+                />
+                <label class="form-check-label" for="tidakHadir"
+                  >Maaf belum bisa hadir</label
+                >
+              </div>
+            </div>
+          </div>
+
+          <button class="btn btn-primary w-100 py-2" style="border-radius: 8px">
+            Send
+          </button>
+        </div>
+      </div>
+
+      <script>
+        function copyText(text, btn) {
+          navigator.clipboard.writeText(text).then(() => {
+            btn.textContent = "Berhasil disalin";
+            setTimeout(() => (btn.textContent = "Salin Rekening"), 2000);
+          });
+        }
+      </script>
+    </div>
+
+    <!-- Aktifkan suara saat tombol ditekan -->
+    <script>
+      const video = document.getElementById("myVideo");
+      const unmuteBtn = document.getElementById("unmuteBtn");
+      const progressBar = document.getElementById("progressBar");
+      const currentTimeEl = document.getElementById("currentTime");
+      const durationEl = document.getElementById("duration");
+
+      // Format waktu
+      function formatTime(seconds) {
+        const m = Math.floor(seconds / 60);
+        const s = Math.floor(seconds % 60);
+        return `${m.toString().padStart(2, "0")}:${s
+          .toString()
+          .padStart(2, "0")}`;
+      }
+
+      // Saat metadata tersedia
+      video.addEventListener("loadedmetadata", () => {
+        progressBar.max = video.duration;
+        durationEl.textContent = formatTime(video.duration);
+      });
+
+      // Update progress saat video berjalan
+      video.addEventListener("timeupdate", () => {
+        progressBar.value = video.currentTime;
+        currentTimeEl.textContent = formatTime(video.currentTime);
+      });
+
+      // Seek ketika digeser
+      progressBar.addEventListener("input", () => {
+        video.currentTime = progressBar.value;
+      });
+
+      // Tombol aktifkan suara
+      unmuteBtn.addEventListener("click", () => {
+        video.muted = false;
+        unmuteBtn.style.display = "none";
+      });
+    </script>
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script>
+      const title = document.getElementById("title");
+      const text = title.textContent;
+      title.textContent = "";
+      [...text].forEach((char) => {
+        const span = document.createElement("span");
+        span.textContent = char;
+        title.appendChild(span);
+      });
+
+      gsap.to(".wavy span", {
+        y: -10,
+        repeat: -1,
+        yoyo: true,
+        stagger: 0.1,
+        ease: "sine.inOut",
+        duration: 0.6,
+      });
+    </script>
+
+    <!-- Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

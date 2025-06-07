@@ -184,6 +184,65 @@
         </div>
       </div>
 
+      <!-- Amplop Digital Section -->
+      <div class="amplop-digital">
+        <!-- Your existing digital envelope content here -->
+      </div>
+
+      <!-- Kirim Ucapan Section -->
+      <div class="card mt-4 border-0 shadow-sm" style="border-radius: 12px">
+        <div class="card-body">
+          <h5 class="card-title text-center mb-4">KIRIM UCAPAN</h5>
+
+          <div class="mb-3">
+            <label class="form-label">Kirim Pesan</label>
+
+            <textarea
+              class="form-control"
+              rows="3"
+              placeholder="Tulis pesan Anda..."
+            ></textarea>
+          </div>
+
+          <div class="mb-4">
+            <label class="form-label">Nama</label>
+            <input type="text" class="form-control" placeholder="Nama Anda" />
+          </div>
+
+          <div class="mb-4">
+            <label class="form-label">KEHADIRAN</label>
+            <div class="d-flex" style="gap: 16px">
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="attendance"
+                  id="hadir"
+                />
+                <label class="form-check-label" for="hadir"
+                  >Saya akan hadir</label
+                >
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="attendance"
+                  id="tidakHadir"
+                />
+                <label class="form-check-label" for="tidakHadir"
+                  >Maaf belum bisa hadir</label
+                >
+              </div>
+            </div>
+          </div>
+
+          <button class="btn btn-primary w-100 py-2" style="border-radius: 8px">
+            Send
+          </button>
+        </div>
+      </div>
+
       <script>
         function copyText(text, btn) {
           navigator.clipboard.writeText(text).then(() => {
